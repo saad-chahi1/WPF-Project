@@ -4,66 +4,285 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFchart3DV2"
-        xmlns:chart="http://mindfusion.eu/charting/wpf" 
-        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
         xmlns:Syncfusion="clr-namespace:Syncfusion.UI.Xaml.Charts;assembly=Syncfusion.SfChart.WPF" 
-        x:Class="WPFchart3DV2.MainWindow"
+
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="WPFchart3DV2.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="490" Width="800">
+        Title="MainWindow" Height="555.809" Width="1153.202" Background="White">
+    <Grid x:Name="grid_etud" Background="#FFC2E1FF" Margin="226,10,42,0" Height="496" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="268*"/>
+            <ColumnDefinition Width="145*"/>
+        </Grid.ColumnDefinitions>
 
-    <Grid>
-        
+        <DataGrid x:Name="dataGridView1" HorizontalAlignment="Left" Height="299" Margin="217,91,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.55" Width="635" MaxColumnWidth="120" MinColumnWidth="120" CanUserResizeColumns="False" FontSize="16" RowHeight="120" ColumnWidth="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="dataGridView1_SelectionChanged" Grid.ColumnSpan="2" SelectionMode="Single" />
 
-        <Syncfusion:SfChart3D EnableRotation="True" x:Name="Chart" 
+        <ComboBox x:Name="combo1" HorizontalAlignment="Left" Margin="12,91,0,0" VerticalAlignment="Top" Width="153" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{Binding ItemsSource, ElementName=combo1}" Height="27" MouseDown="displayFiliere"/>
+        <Label Content="Recherche par Filière :" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Franklin Gothic Heavy" FontSize="15"/>
+        <Grid HorizontalAlignment="Left" Height="232" Margin="10,141,0,0" VerticalAlignment="Top" Width="170">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF2DC3D3"/>
+                    <GradientStop Color="White" Offset="1"/>
+                    <GradientStop Color="#FF2DC3D3"/>
+                    <GradientStop Color="#FFE0F6F8" Offset="0.614"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <TextBox x:Name="textBox_path" HorizontalAlignment="Left" Height="23" Margin="10,41,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" TextChanged="textBox_path_TextChanged"/>
+            <Label Content="Le responsable :" HorizontalAlignment="Left" Margin="0,94,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <TextBox x:Name="btn_resp" HorizontalAlignment="Left" Height="23" Margin="10,125,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Les informations du filier :" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" ClipToBounds="True" FontWeight="Bold"/>
+        </Grid>
+        <Button x:Name="btnShow" Content="Modifier" Margin="325,411,92,0" VerticalAlignment="Top" FontWeight="Bold" Click="btnShow_Click" Height="38" FontSize="15">
+            <Button.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                    <GradientStop Color="#FFEBEBEB" Offset="0.341"/>
+                    <GradientStop Color="#FFDDDDDD"/>
+                    <GradientStop Color="#FF22AFC5" Offset="1"/>
+                    <GradientStop Color="#FFE1E1E1"/>
+                </RadialGradientBrush>
+            </Button.Background>
+        </Button>
+        <TextBlock x:Name="filier_name" HorizontalAlignment="Left" Margin="394,46,0,0" Text="TextBlock" VerticalAlignment="Top" Width="290" FontSize="16" FontFamily="Calisto MT" TextAlignment="Center" TextOptions.TextHintingMode="Animated" Grid.ColumnSpan="2" Height="31" TextDecorations="{x:Null}" IsEnabled="False" TextWrapping="Wrap" Padding="0,5,0,0">
+            <TextBlock.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFB8A6A6" Offset="1"/>
+                    <GradientStop Color="#FFFFFBFB" Offset="0.826"/>
+                </LinearGradientBrush>
+            </TextBlock.Background>
+        </TextBlock>
+        <Button x:Name="btn_add" Content="Add" HorizontalAlignment="Left" Margin="0,411,0,0" Width="152" FontWeight="Bold" Click="btn_add_Click" Height="38" VerticalAlignment="Top" Grid.Column="1" FontSize="15">
+            <Button.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                    <GradientStop Color="#FFEBEBEB" Offset="0.331"/>
+                    <GradientStop Color="#FFDDDDDD"/>
+                    <GradientStop Color="#FF22AFC5" Offset="1"/>
+                    <GradientStop Color="#FFE1E1E1"/>
+                </RadialGradientBrush>
+            </Button.Background>
+        </Button>
+        <Grid x:Name="grid_add" HorizontalAlignment="Left" Height="344" Margin="217,69,0,0" VerticalAlignment="Top" Width="547" Grid.ColumnSpan="2" Visibility="Hidden">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF22AFC5" Offset="0"/>
+                    <GradientStop Color="White" Offset="0.567"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <TextBox x:Name="btn_cne"  HorizontalAlignment="Left" Height="23" Margin="249,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="cne" HorizontalAlignment="Left" Margin="49,29,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="btn_name" HorizontalAlignment="Left" Height="23" Margin="249,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="nom" HorizontalAlignment="Left" Margin="49,78,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="btn_prenom" HorizontalAlignment="Left" Height="23" Margin="249,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="prenom" HorizontalAlignment="Left" Margin="49,123,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="btn_sex" HorizontalAlignment="Left" Height="23" Margin="249,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="btn_sex_TextChanged"/>
+            <Label Content="sexe" HorizontalAlignment="Left" Margin="49,165,0,0" VerticalAlignment="Top"/>
+            <Label Content="date naissance" HorizontalAlignment="Left" Margin="49,209,0,0" VerticalAlignment="Top"/>
+            <DatePicker x:Name="btn_dateSelect" HorizontalAlignment="Left" Margin="249,211,0,0" VerticalAlignment="Top" Width="120"/>
+            <Image x:Name="image1" HorizontalAlignment="Left" Height="100" Margin="418,31,0,0" VerticalAlignment="Top" Width="100"/>
+            <Button x:Name="btnBrowse" Content="Choiser image" Margin="408,149,19,0" VerticalAlignment="Top" Click="btnBrowse_Click" Height="42">
+                <Button.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                        <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                        <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                        <GradientStop Color="#FF22AFC5" Offset="1"/>
+                    </RadialGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button Content="Annuler" HorizontalAlignment="Left" Margin="319,298,0,0" VerticalAlignment="Top" Width="93" Click="Button_Click" Height="36" FontSize="15">
+                <Button.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                        <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                        <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                        <GradientStop Color="#FF22AFC5" Offset="1"/>
+                    </RadialGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button x:Name="btnSave" Content="OK" HorizontalAlignment="Left" Margin="181,298,0,0" VerticalAlignment="Top" Width="93" Click="btnSave_Click_1" Height="36" FontSize="15">
+                <Button.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                        <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                        <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                        <GradientStop Color="#FF22AFC5" Offset="1"/>
+                    </RadialGradientBrush>
+                </Button.Background>
+            </Button>
+            <Label Content="filier" HorizontalAlignment="Left" Margin="49,256,0,0" VerticalAlignment="Top"/>
+            <ComboBox x:Name="combo2" HorizontalAlignment="Left" Margin="249,260,0,0" VerticalAlignment="Top" Width="120"/>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="115" Margin="408,29,0,0" VerticalAlignment="Top" Width="120"/>
+        </Grid>
 
-	Height="400" Width="700"  Header="Les statistiques">
+        <GridSplitter HorizontalAlignment="Left" Height="492" Margin="-37,4,0,0" VerticalAlignment="Top" Width="5"/>
+        <Grid HorizontalAlignment="Left" Margin="-210,4,0,0" Width="168" Height="492" VerticalAlignment="Top">
+            <Button x:Name="btn_etud" Content="Etudiant" HorizontalAlignment="Left" Margin="10,0,0,251" VerticalAlignment="Bottom" Width="115"  Height="96" Click="btn_etud_Click" ScrollViewer.VerticalScrollBarVisibility="Disabled" RenderTransformOrigin="0.5,0.5" FontSize="15">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="1" ScaleX="1"/>
+                        <SkewTransform AngleY="0" AngleX="0"/>
+                        <RotateTransform Angle="0"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#FFF3F3F3"/>
+                        <GradientStop Color="#FFEBEBEB" Offset="0.206"/>
+                        <GradientStop Color="#FFDDDDDD" Offset="0.026"/>
+                        <GradientStop Color="#FF22AFC5" Offset="1"/>
+                    </RadialGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button x:Name="btn_filiere" Content="Filiere" HorizontalAlignment="Left" Margin="10,0,0,130" VerticalAlignment="Bottom" Width="115" Height="85" Click="btn_filiere_Click" FontSize="15">
+                <Button.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                        <GradientStop Color="#FFEBEBEB" Offset="0.197"/>
+                        <GradientStop Color="#FFDDDDDD" Offset="0.017"/>
+                        <GradientStop Color="#FF22AFC5" Offset="1"/>
+                    </RadialGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button x:Name="btn_stat" Content="Statistiques" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="115" Height="88.5" Click="btn_stat_Click" FontSize="15" UseLayoutRounding="False" BorderBrush="Black">
+                <Button.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                        <GradientStop Color="#FFEBEBEB" Offset="0.296"/>
+                        <GradientStop Color="#FFDDDDDD"/>
+                        <GradientStop Color="#FF22AFC5" Offset="1"/>
+                    </RadialGradientBrush>
+                </Button.Background>
+            </Button>
+            <Image Margin="0,0,25,352" Source="1519869181392.png" Stretch="Fill"/>
+        </Grid>
+        <Grid x:Name="grid_filiere" HorizontalAlignment="Left" Height="496" VerticalAlignment="Top" Width="882" Grid.ColumnSpan="2" Background="#FFE6F0F5" Visibility="Hidden" Margin="0,0,-5,0">
+            <Syncfusion:SfChart3D EnableRotation="True" x:Name="Chart" Height="400" Width="700"  Header="Les statistiques">
+                <Syncfusion:SfChart3D.DataContext>
+                    <local:ViewModel/>
+                </Syncfusion:SfChart3D.DataContext>
+                <Syncfusion:SfChart3D.PrimaryAxis>
+                    <Syncfusion:CategoryAxis3D Header="Les Filiéres"/>
+                </Syncfusion:SfChart3D.PrimaryAxis>
+                <Syncfusion:SfChart3D.SecondaryAxis>
+                    <Syncfusion:NumericalAxis3D Header="Le nombre d'étudiants"/>
+                </Syncfusion:SfChart3D.SecondaryAxis>
+                <Syncfusion:ColumnSeries3D x:Name="grid" SegmentSelectionBrush="Red" ItemsSource="{Binding Data}" XBindingPath="Filiere" YBindingPath="nombresEtudiant" Margin="-51,-33,-40,-11"/>
+            </Syncfusion:SfChart3D >
+        </Grid>
+        <Grid x:Name="GridMain" Grid.ColumnSpan="2" Height="517" VerticalAlignment="Top" Visibility="Hidden" Background="#FFBEEBF1">
+            <ListBox x:Name="listBoxNames" HorizontalAlignment="Center" Width="790" Height="235" Margin="0,36,0,0" Background="Beige" VerticalAlignment="Top" ItemTemplate="{DynamicResource ContactTemplate}" SelectionChanged="listBoxNames_SelectionChanged">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel VerticalAlignment="Center" IsItemsHost="True" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
 
-            <Syncfusion:SfChart3D.DataContext>
-                <local:ViewModel/>
-            </Syncfusion:SfChart3D.DataContext>
+                <ListBox.Resources>
+                    <DataTemplate x:Key="ContactTemplate">
+                        <Grid Width="300" Height="200">
+                            <Rectangle Margin="20" Grid.Row="0" Grid.Column="1" Height="120" Width="200" Fill="AntiqueWhite" RadiusX="10" RadiusY="10">
+                                <Rectangle.Effect>
+                                    <DropShadowEffect ShadowDepth="0" BlurRadius="15" />
+                                </Rectangle.Effect>
+                                <Rectangle.Style>
+                                    <Style TargetType="Rectangle">
+                                        <Style.Triggers>
+                                            <EventTrigger RoutedEvent="MouseEnter">
+                                                <EventTrigger.Actions>
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="Width" To="230" />
+                                                            <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="Height" To="150" />
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </EventTrigger.Actions>
+                                            </EventTrigger>
+                                            <EventTrigger RoutedEvent="MouseLeave">
+                                                <EventTrigger.Actions>
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="Width" To="200" />
+                                                            <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="Height" To="120" />
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </EventTrigger.Actions>
+                                            </EventTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Rectangle.Style>
+                            </Rectangle>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="Id : " FontWeight="Bold" Margin="55,0,-55,-50" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Grid.Column="0" Grid.Row="0" />
+                                <Label Content="{Binding Id}"            Margin="0,0,-55,-50" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" />
+                                <Label Content="Nom : " FontWeight="Bold" Margin="55,0,-50,0" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1" />
+                                <Label Content="{Binding Nom}"              Margin="10,0,-100,0" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" />
+                                <Label Content="Responsable: " FontWeight="Bold" Margin="55,-50,-70,0" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" />
+                                <Label Content="{Binding Responsable}" Margin="55,-50,-100,0" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" />
+                            </Grid>
 
-            <Syncfusion:SfChart3D.PrimaryAxis>
-
-
-
-                <Syncfusion:CategoryAxis3D Header="Les Filiéres"/>
-
-
-
-            </Syncfusion:SfChart3D.PrimaryAxis>
-
-
-
-
-
-            <Syncfusion:SfChart3D.SecondaryAxis>
-
-
-
-                <Syncfusion:NumericalAxis3D Header="Le nombre d'étudiants"/>
-
-
-
-            </Syncfusion:SfChart3D.SecondaryAxis>
-
-
-
-            <Syncfusion:ColumnSeries3D
-
-
-
-	SegmentSelectionBrush="Red"
-
-
-
-	                ItemsSource="{Binding Data}" XBindingPath="Filiere" YBindingPath="nombresEtudiant">
-
-
-
-            </Syncfusion:ColumnSeries3D>
-
-
-
-        </Syncfusion:SfChart3D >
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.Resources>
+            </ListBox>
+            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="141" Margin="306,291,0,0" Stroke="Black" VerticalAlignment="Top" Width="273" RenderTransformOrigin="0.5,0.5" RadiusY="18.091" RadiusX="18.091">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0.35"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Label Content="ID : " HorizontalAlignment="Left" Margin="322,304,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="60"/>
+            <Label Content="Nom : " HorizontalAlignment="Left" Margin="322,347,0,0" VerticalAlignment="Top" FontWeight="Bold" RenderTransformOrigin="1.104,-0.231" Width="75"/>
+            <TextBox x:Name="filiere_id" HorizontalAlignment="Left" Height="23" Margin="426,308,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.5,0.5">
+                <TextBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-0.36"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBox.RenderTransform>
+            </TextBox>
+            <TextBox x:Name="filiere_name" HorizontalAlignment="Left" Height="23" Margin="425,349,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.5,0.5">
+                <TextBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-0.36"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBox.RenderTransform>
+            </TextBox>
+            <Button x:Name="ajouter_filiere" Content="Ajouter" HorizontalAlignment="Left" Margin="322,445,0,0" VerticalAlignment="Top" Width="75" Click="ajouter_filiere_Click" />
+            <Button x:Name="modifier_filiere" Content="Modifier" HorizontalAlignment="Left" Margin="414,445,0,0" VerticalAlignment="Top" Width="75" Click="modifier_filiere_Click" />
+            <Button x:Name="supprime_filiere" Content="Supprimer" HorizontalAlignment="Left" Margin="510,445,0,0" VerticalAlignment="Top" Width="75" Click="supprime_filiere_Click"/>
+            <Label Content="responsable : " HorizontalAlignment="Left" Margin="322,385,0,0" VerticalAlignment="Top" FontWeight="Bold" RenderTransformOrigin="1.104,-0.231" Width="92"/>
+            <TextBox x:Name="responsable_name" HorizontalAlignment="Left" Height="23" Margin="425,387,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.5,0.5">
+                <TextBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-0.36"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBox.RenderTransform>
+            </TextBox>
+        </Grid>
     </Grid>
 </Window>

@@ -1,0 +1,55 @@
+﻿<Window x:Class="WPFchart3DV2.ModEtudiant"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFchart3DV2"
+        mc:Ignorable="d"
+        Title="ModEtudiant" Height="430.588" Width="555.883">
+    <Grid Margin="0,0,-8,-52">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="33*"/>
+            <ColumnDefinition Width="241*"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="grid_mod" HorizontalAlignment="Left" Margin="8,62,0,10" Width="530" Grid.ColumnSpan="2">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF2DCCFB" Offset="0"/>
+                    <GradientStop Color="White" Offset="0.661"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <TextBox x:Name="btn_cne"  HorizontalAlignment="Left" Height="23" Margin="249,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+            <Label Content="cne" HorizontalAlignment="Left" Margin="49,29,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="btn_name" HorizontalAlignment="Left" Height="23" Margin="249,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="nom" HorizontalAlignment="Left" Margin="49,78,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="btn_prenom" HorizontalAlignment="Left" Height="23" Margin="249,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="prenom" HorizontalAlignment="Left" Margin="49,123,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="btn_sex" HorizontalAlignment="Left" Height="23" Margin="249,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="sexe" HorizontalAlignment="Left" Margin="49,165,0,0" VerticalAlignment="Top"/>
+            <Label Content="date naissance" HorizontalAlignment="Left" Margin="49,211,0,0" VerticalAlignment="Top"/>
+            <DatePicker x:Name="btn_dateSelect" HorizontalAlignment="Left" Margin="249,220,0,0" VerticalAlignment="Top" Width="120"/>
+        </Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="4,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="384" FontSize="20" FontFamily="Franklin Gothic Demi Cond" TextAlignment="Center" Text="Fenétre de modification des étudiants" Background="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}" Foreground="#FF1B1919" TextDecorations="Underline" Grid.Column="1"/>
+        <Button Content="Valider les modifications" HorizontalAlignment="Left" Margin="57,354,0,0" VerticalAlignment="Top" Width="199" Grid.ColumnSpan="2" Click="Button_Click" Height="37" FontSize="15">
+            <Button.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                    <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                    <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                    <GradientStop Color="#FF22AFC5" Offset="1"/>
+                </RadialGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Annuler" HorizontalAlignment="Left" Margin="215,354,0,0" VerticalAlignment="Top" Width="173" Grid.Column="1" Height="37" FontSize="15" Click="Button_Click_1">
+            <Button.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                    <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                    <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                    <GradientStop Color="#FF22AFC5" Offset="1"/>
+                </RadialGradientBrush>
+            </Button.Background>
+        </Button>
+
+    </Grid>
+</Window>
