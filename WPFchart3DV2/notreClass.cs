@@ -10,5 +10,6 @@ namespace WPFchart3DV2
     {
         public string Filiere { get; set; }
         public double nombresEtudiant { get; set; }
+        //
     }
 }
